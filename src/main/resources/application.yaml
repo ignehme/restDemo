@@ -1,0 +1,30 @@
+spring:
+  data:
+    jpa.repositories.enabled: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        temp.use_jdbc_metadata_defaults: false
+        ddl-auto: none
+        use-new-id-generator-mappings: false
+        #default_schema: @project.artifactId@
+        default_schema: test_schema
+      show-sql: true
+    show-sql: true
+  datasource:
+    #url: jdbc:postgresql://localhost:5432/dbTest
+    # add 127.0.0.1 postgresql in host file
+    url: jdbc:postgresql://postgresql:5432/dbTest
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: mysecretpassword
+    initialization-mode: always
+  flyway:
+    enabled: true
+    locations: classpath:/db/migration
+    baselineOnMigrate: true
+    #schemas: @project.artifactId@
+    schemas: test_schema
+server:
+  port: 8088

@@ -1,0 +1,19 @@
+version: '2.1'
+services:
+  postgresql:
+    image: postgres:11
+    restart: always
+    environment:
+      POSTGRES_DB: dbTest
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - 5432:5432
+
+  restDemoApp:
+    image: rest-demo:1.0
+    restart: always
+    ports:
+      - 8088:8088
+    depends_on:
+      - postgresql
